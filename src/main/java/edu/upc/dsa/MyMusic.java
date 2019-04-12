@@ -5,7 +5,7 @@ import java.util.List;
 public interface MyMusic {
 
 
-
+    public void addUser(String idUser, String name, String surname);
     public void addArtist (String name, String surname);
     public List<Artist> artists();
     public void addPlayList (String idUser, String namePlayList) throws UserNotFoundException;

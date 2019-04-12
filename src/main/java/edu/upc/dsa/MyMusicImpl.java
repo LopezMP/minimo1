@@ -10,10 +10,12 @@ public class MyMusicImpl implements MyMusic {
     private static MyMusicImpl singleton;
     private HashMap<String,User> users;
     private LinkedList<Artist>artists;
+    private int numArtist;
 
     private MyMusicImpl(){// solo se usa una vez al crearse con el singleton
         this.users =new HashMap<>();
         this.artists=new LinkedList<>();
+        this.numArtist=0;
     }
     public static MyMusicImpl getInstance() //Singleton
     {
@@ -22,10 +24,16 @@ public class MyMusicImpl implements MyMusic {
         return singleton;
     }
 
+    public void addUser(String idUser, String name, String surname) {
+        this.users.put(idUser, new User(idUser,name,surname));
+        logger.info("added user"+name);
+    }
+
     @Override
     public void addArtist(String name, String surname) {
         logger.info("añadir Artista");
         this.artists.add(new Artist(name, surname));
+        this.numArtist++;
         logger.info(name+" se ha añadido");
     }
 
@@ -75,6 +83,7 @@ public class MyMusicImpl implements MyMusic {
             for (int i=0; i<user.getPlayLists().length; i++){
                 Playlists.add(user.getPlayLists(i));
             }
+            logger.info("Se devuelve correctamente la playlist");
             return  Playlists;
         }
     }
