@@ -14,8 +14,16 @@ public class User {
         this.idUser=idUser;
         this.name=name;
         this.surname=surname;
-        this.num=0;
+        this.num=0; //num de playlist
         this.playLists = new PlayList[numMax];
+    }
+
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num ) {
+        this.num += num;
     }
 
     public String getName() {
@@ -42,9 +50,9 @@ public class User {
         this.surname = surname;
     }
 
-    public PlayList findplaylist (String idPlaylist) throws PlaylistNotFoundException {
+    public PlayList findplaylist (String namePlaylist) throws PlaylistNotFoundException {
         for (int i=0; i< this.num; i++){
-            if(this.playLists[i].getIdPlaylist().equals(idPlaylist)){
+            if(this.playLists[i].getName().equals(namePlaylist)){
                 return this.playLists[i];
             }
         }
@@ -55,7 +63,7 @@ public class User {
         return playLists[i];
     }
 
-    public PlayList[] getPlayLists() {
-        return playLists;
+    public void addPlayLists(String name) {
+        this.playLists[this.getNum()]= new PlayList(name);
     }
 }

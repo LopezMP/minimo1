@@ -5,14 +5,15 @@ import edu.upc.dsa.util.RandomUtils;
 import java.util.HashMap;
 
 public class Titol {
-    private String idTitol, name, album, artist;
+    private String idTitol, name, album;
+    private Artist artista;
     private double duració;
 
-    public Titol(String name, String album, String artist, double duració){
+    public Titol(String name, String album, String nameArtist, String surname, double duració){
         this.idTitol= RandomUtils.getId();
         this.name=name;
         this.album=album;
-        this.artist=artist;
+        this.artista= new Artist(nameArtist, surname);
         this.duració=duració;
     }
 
@@ -27,8 +28,8 @@ public class Titol {
         this.name = name;
     }
 
-    public String getArtist() {
-        return artist;
+    public Artist getArtista() {
+        return artista;
     }
 
     public String getAlbum() {
@@ -37,5 +38,9 @@ public class Titol {
 
     public double getDuració() {
         return duració;
+    }
+    @Override
+    public String toString() {
+        return "Titulo [id="+getIdTitol()+", name=" + getName() + ", Artista=" + getArtista().getName()+" "+getArtista().getSurname() +", album="+getAlbum()+", duració="+duració+"]";
     }
 }

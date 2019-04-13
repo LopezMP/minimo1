@@ -29,6 +29,7 @@ public class MyMusicImpl implements MyMusic {
         logger.info("added user"+name);
     }
 
+
     @Override
     public void addArtist(String name, String surname) {
         logger.info("añadir Artista");
@@ -44,6 +45,19 @@ public class MyMusicImpl implements MyMusic {
     }
 
     @Override
+    public int numPlayList(String idUser) throws UserNotFoundException {
+        User user= this.users.get(idUser);
+        if(user==null){
+            logger.info("error numPlaylist");
+            throw new UserNotFoundException();
+        }
+        else {
+            logger.info("playlist añadido");
+            return user.getNum();
+        }
+    }
+
+    @Override
     public void addPlayList(String idUser, String namePlayList) throws UserNotFoundException {
         User user= this.users.get(idUser);
         if(user==null){
@@ -51,40 +65,64 @@ public class MyMusicImpl implements MyMusic {
             throw new UserNotFoundException();
         }
         else {
-            user.setName(namePlayList);
+            user.addPlayLists(namePlayList);
+            user.setNum(1);
             logger.info("playlist añadido");
         }
-
     }
 
     @Override
-    public void addTitol(String idUser, String idPlaylist, String name, String album, String artist, double duració) throws UserNotFoundException, PlaylistNotFoundException {
+    public int numTitol(String idUser, String namePlaylist) throws UserNotFoundException, PlaylistNotFoundException {
+        User user= this.users.get(idUser);
+        if(user==null){
+            logger.info("error encontrando user");
+            throw new UserNotFoundException();
+        }
+        else {
+            return user.findplaylist(namePlaylist).getNumTitols();
+        }
+    }
+
+    @Override
+    public void addTitol(String idUser, String namePlaylist, String name, String album, String nameArtist, String surname, double duració) throws UserNotFoundException, PlaylistNotFoundException {
         User user= this.users.get(idUser);
         if(user==null){
             logger.info("error añadiendo titulo");
             throw new UserNotFoundException();
         }
         else {
-            PlayList playList=user.findplaylist(idPlaylist);
-             playList.addTitol(new Titol(name, album, artist, duració));
+             user.findplaylist(namePlaylist).addTitol(new Titol(name, album, nameArtist, surname, duració));
             logger.info("titulo añadido");
         }
     }
 
     @Override
-    public List<PlayList> listPlaylist(String idUser) throws UserNotFoundException {
+    public List<String> listPlaylist(String idUser, String namePlaylist) throws UserNotFoundException, PlaylistNotFoundException {
         User user= this.users.get(idUser);
         if(user==null){
             logger.info("error sacando la lista");
             throw new UserNotFoundException();
         }
         else {
-            List<PlayList> Playlists = new LinkedList<>();
-            for (int i=0; i<user.getPlayLists().length; i++){
-                Playlists.add(user.getPlayLists(i));
+            user.findplaylist(namePlaylist);
+            List<String> Playlists = new ArrayList<String>();
+            for (int i=0; i<user.getNum(); i++){
+                Playlists.add(user.getPlayLists(i).toString());
             }
             logger.info("Se devuelve correctamente la playlist");
             return  Playlists;
         }
+    }
+    @Override
+    public int numArtist() {
+        return this.numArtist;
+    }
+
+
+    @Override
+    public void clear() {
+        this.users =new HashMap<>();
+        this.artists=new LinkedList<>();
+        this.numArtist=0;
     }
 }

@@ -6,11 +6,13 @@ import java.util.LinkedList;
 public class PlayList {
 
     private String idPlaylist, name;
+    private int numTitols;
     private LinkedList<Titol> titols;
 
     public PlayList(String name){
         this.idPlaylist= RandomUtils.getId();
         this.name=name;
+        this.numTitols=0;
         this.titols= new LinkedList<Titol>();
     }
 
@@ -24,6 +26,11 @@ public class PlayList {
 
     public void addTitol(Titol titol){
         this.titols.add(titol);
+        this.numTitols++;
+    }
+
+    public int getNumTitols() {
+        return numTitols;
     }
 
     public String getIdPlaylist() {
