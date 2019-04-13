@@ -20,6 +20,7 @@ public class Titol {
     public String getName() {
         return name;
     }
+
     public String getIdTitol() {
         return idTitol;
     }

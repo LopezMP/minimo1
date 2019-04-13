@@ -40,7 +40,7 @@ public class MyMusicImpl implements MyMusic {
 
     @Override
     public List<Artist> artists() {
-        logger.info("se ha devuelto la lista de artitas");
+        logger.info("se ha devuelto la lista de artistas");
         return this.artists;
     }
 
