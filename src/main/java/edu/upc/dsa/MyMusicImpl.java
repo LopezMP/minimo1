@@ -2,13 +2,13 @@ package edu.upc.dsa;
 
 import java.util.*;
 
-import com.sun.xml.internal.bind.v2.runtime.reflect.Lister;
+import edu.upc.dsa.models.*;
 import org.apache.log4j.Logger;
 public class MyMusicImpl implements MyMusic {
     static Logger logger = Logger.getLogger(MyMusicImpl.class);
 
     private static MyMusicImpl singleton;
-    private HashMap<String,User> users;
+    private HashMap<String, User> users;
     private LinkedList<Artist>artists;
     private int numArtist;
 

@@ -1,8 +1,7 @@
 import edu.upc.dsa.MyMusic;
 import edu.upc.dsa.MyMusicImpl;
-import edu.upc.dsa.PlayList;
-import edu.upc.dsa.UserNotFoundException;
-import edu.upc.dsa.*;
+import edu.upc.dsa.models.PlaylistNotFoundException;
+import edu.upc.dsa.models.UserNotFoundException;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;

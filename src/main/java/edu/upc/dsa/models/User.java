@@ -1,7 +1,4 @@
-package edu.upc.dsa;
-
-import java.util.LinkedList;
-import java.util.List;
+package edu.upc.dsa.models;
 
 public class User {
 

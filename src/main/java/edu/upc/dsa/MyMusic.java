@@ -1,5 +1,9 @@
 package edu.upc.dsa;
 
+import edu.upc.dsa.models.Artist;
+import edu.upc.dsa.models.PlaylistNotFoundException;
+import edu.upc.dsa.models.UserNotFoundException;
+
 import java.util.List;
 
 public interface MyMusic {
